@@ -1,3 +1,4 @@
+let chartAm;
 const actions = [
     {
         name: 'Randomize',
@@ -75,13 +76,13 @@ function addData(chart, label, data) {
     chart.update();
 }
 
-async function getDataSource() {
+function getDataSource() {
     const path = window.location.href.split('/').splice(0, 4).join('/');
     const labels = [];
     const dataset1 = [];
     const dataset2 = [];
 
-    const _chart = await $.get(`${path}/logic_trend/api.php`, function(response) {
+    $.get(`${path}/logic_trend/api.php`, function(response) {
         for(let data of response) {
             labels.push(data.datetime);
             dataset1.push(+data.dataset_1);
@@ -123,10 +124,8 @@ async function getDataSource() {
             },
         };
 
-        return setData($('#chartAm'), _config);
+        chartAm = setData($('#chartAm'), _config);
     });
-
-    return _chart;
 }
 
 function setData(chart, data) {
@@ -137,21 +136,19 @@ function setData(chart, data) {
 
 // 1st loaded data
 let statusLoaded = false;
-let chart;
-
 setInterval(async() => {
     if (statusLoaded) {
         const _date = new Date();
         const _random = Math.floor(Math.random() * 300);
-        const _dateNow = `${_date.getFullYear()}-${_date.getMonth()}-${_date.getDate()} `;
+        const _dateNow = `${_date.getDate()}/${_date.getMonth()}/${_date.getFullYear()}`;
         const _timeNow = `${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`;
         const _labels = _dateNow + _timeNow;
 
-        addData(chart, _labels, _random);
+        addData(chartAm, _labels, _random);
     }
 
-    if (chart == null && !statusLoaded) {
-        chart = await getDataSource();
+    if (chartAm == null && !statusLoaded) {
+        chartAm = await getDataSource();
         statusLoaded = true
     }
 }, 5000);
