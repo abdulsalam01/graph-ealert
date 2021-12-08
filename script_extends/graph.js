@@ -1,4 +1,5 @@
 let chartAm;
+const MAX_LIMIT = 300;
 const actions = [
     {
         name: 'Randomize',
@@ -62,14 +63,13 @@ const actions = [
 ];
 
 function addData(chart, label, data) {
-    console.log(chart.data);
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset, index) => {
         const _random = Math.floor(Math.random() * 500);
         dataset.data.push(_random);
 
-        if (_random > 300) {
-            //
+        if (_random > MAX_LIMIT) {
+            // send email here
         }
     });
 
@@ -121,6 +121,13 @@ function getDataSource() {
                         text: 'Stormdifferenzmessung Tumbler'
                     }
                 },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                          maxTicksLimit: 10
+                        }
+                    }]
+                }
             },
         };
 
