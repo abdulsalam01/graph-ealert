@@ -65,9 +65,10 @@ const actions = [
 
 function addData(chart, label, data) {
     chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset, index) => {
-        const _random = Math.floor(Math.random() * 500);
-        dataset.data.push(_random);
+    chart.data.datasets.forEach((_dataset, index) => {
+        let _random = Math.floor(Math.random() * 500);
+        _random *= Math.round(Math.random()) ? 1 : -1;
+        _dataset.data.push(_random);
 
         if (_random > MAX_LIMIT) {
             // send email here
