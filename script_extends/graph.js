@@ -77,7 +77,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
-function getDataSource() {
+async function getDataSource() {
     const path = window.location.href.split('/').splice(0, 4).join('/');
     const labels = [];
     const dataset1 = [];
