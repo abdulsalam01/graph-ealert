@@ -1,25 +1,3 @@
-const DATA_COUNT = 7;
-const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
-
-const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug'];
-const data = {
-    labels: labels,
-    datasets: [
-        {
-            label: 'Miliampere differenz',
-            data: [100, 90, -20, 50, -60, 10, -80],
-            borderColor: 'red',
-            backgroundColor: 'red',
-        },
-        {
-            label: 'Miliampere differenz T2',
-            data: [50, -20, 100, 73, -20, -40, 80],
-            borderColor: 'blue',
-            backgroundColor: 'blue',
-        }
-    ]
-};
-
 const actions = [
     {
         name: 'Randomize',
@@ -82,33 +60,15 @@ const actions = [
     }
 ];
 
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Stormdifferenzmessung Tumbler'
-            }
-        },
-    },
-};
-
-const chart = new Chart($('#chartAm'), config);
-
 function addData(chart, label, data) {
+    console.log(chart.data);
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset, index) => {
         const _random = Math.floor(Math.random() * 500);
         dataset.data.push(_random);
 
         if (_random > 300) {
-            window.alert("lebih dari 300");
+            //
         }
     });
 
@@ -117,19 +77,81 @@ function addData(chart, label, data) {
 
 async function getDataSource() {
     const path = window.location.href.split('/').splice(0, 4).join('/');
-    const data = await $.get(`${path}/logic_trend/api.php`, function(response) {
-        return response;
+    const labels = [];
+    const dataset1 = [];
+    const dataset2 = [];
+
+    const _chart = await $.get(`${path}/logic_trend/api.php`, function(response) {
+        for(let data of response) {
+            labels.push(data.datetime);
+            dataset1.push(+data.dataset_1);
+            dataset2.push(+data.dataset_2);
+        }
+
+        const _data = {
+            labels,
+            datasets: [
+                {
+                    label: 'Miliampere differenz',
+                    data: dataset1,
+                    borderColor: 'blue',
+                    backgroundColor: 'blue',
+                },
+                {
+                    label: 'Miliampere differenz T2',
+                    data: dataset2,
+                    borderColor: 'yellow',
+                    backgroundColor: 'yellow',
+                }
+            ]
+        }
+
+        const _config = {
+            type: 'bar',
+            data: _data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Stormdifferenzmessung Tumbler'
+                    }
+                },
+            },
+        };
+
+        return setData($('#chartAm'), _config);
     });
 
-    return data;
+    return _chart;
 }
 
-setInterval(async() => {
-    const _date = new Date();
-    const _random = Math.floor(Math.random() * 300);
-    const _dateNow = `${_date.getFullYear()}-${_date.getMonth()}-${_date.getDate()} `;
-    const _timeNow = `${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`;
-    const _labels = _dateNow + _timeNow;
+function setData(chart, data) {
+    const _chart = new Chart(chart, data);
+    return _chart;
+}
 
-    addData(chart, _labels, _random);
+
+// 1st loaded data
+let statusLoaded = false;
+let chart;
+
+setInterval(async() => {
+    if (statusLoaded) {
+        const _date = new Date();
+        const _random = Math.floor(Math.random() * 300);
+        const _dateNow = `${_date.getFullYear()}-${_date.getMonth()}-${_date.getDate()} `;
+        const _timeNow = `${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`;
+        const _labels = _dateNow + _timeNow;
+
+        addData(chart, _labels, _random);
+    }
+
+    if (chart == null && !statusLoaded) {
+        chart = await getDataSource();
+        statusLoaded = true
+    }
 }, 5000);
