@@ -88,13 +88,21 @@ async function getDataSource() {
     const labels = [];
     const dataset1 = [];
     const dataset2 = [];
+    const colors = [];
 
     $.get(`${path}/logic_trend/api.php?limit=${SOURCE_LIMIT}`, function(response) {
         for(let data of response) {
+            colors.push(data.status);
             labels.push(data.datetime);
             dataset1.push(+data.dataset_1);
             dataset2.push(+data.dataset_2);
         }
+
+        const _colorsBlue = colors.filter((m, index) => { return index % 2 == 0});
+        const _colorsYellow = colors.filter((m, index) => { return index % 2 == 1});
+        //
+        const _blueRed = _colorsBlue.map((m) => m ? 'blue': 'blue');
+        const _yellowRed = _colorsYellow.map((m) => m ? 'yellow': 'blue');
 
         const _data = {
             labels,
@@ -103,13 +111,13 @@ async function getDataSource() {
                     label: 'Miliampere differenz',
                     data: dataset1,
                     borderColor: 'blue',
-                    backgroundColor: ['blue'],
+                    backgroundColor: _blueRed,
                 },
                 {
                     label: 'Miliampere differenz T2',
                     data: dataset2,
                     borderColor: 'yellow',
-                    backgroundColor: ['yellow'],
+                    backgroundColor: _yellowRed,
                 }
             ]
         }
@@ -146,6 +154,8 @@ async function getDataSource() {
 
 function setData(chart, data) {
     const _chart = new Chart(chart, data);
+    // hide loader
+    $("#loader").hide();
     return _chart;
 }
 

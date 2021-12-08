@@ -5,8 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart</title>
+
+    <link rel="stylesheet" href="script_extends/style.css"/>
 </head>
 <body>
+    <!-- loader -->
+    <div class="wrapper" id="loader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- graph -->
     <div>
         <canvas id="chartAm"></canvas>
     </div>
