@@ -67,11 +67,16 @@ function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((_dataset, index) => {
         let _random = Math.floor(Math.random() * 500);
+
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
 
         if (_random > MAX_LIMIT) {
             // send email here
+            chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'red';
+        } else {
+            chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
+            chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
         }
     });
 
@@ -98,13 +103,13 @@ async function getDataSource() {
                     label: 'Miliampere differenz',
                     data: dataset1,
                     borderColor: 'blue',
-                    backgroundColor: 'blue',
+                    backgroundColor: ['blue'],
                 },
                 {
                     label: 'Miliampere differenz T2',
                     data: dataset2,
                     borderColor: 'yellow',
-                    backgroundColor: 'yellow',
+                    backgroundColor: ['yellow'],
                 }
             ]
         }
@@ -159,7 +164,7 @@ setInterval(async() => {
     }
 
     if (chartAm == null && !statusLoaded) {
-        chartAm = await getDataSource();
+        await getDataSource();
         statusLoaded = true
     }
 }, 5000);
