@@ -5,7 +5,7 @@
     class API {
 
         function GetData() {
-            $limit = 50;
+            $limit = $_GET['limit'];
 
             $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
             $spreadsheet = $reader->load("../data_source/source.xlsx");

@@ -1,4 +1,5 @@
 let chartAm;
+const SOURCE_LIMIT = 30;
 const MAX_LIMIT = 300;
 const actions = [
     {
@@ -82,7 +83,7 @@ function getDataSource() {
     const dataset1 = [];
     const dataset2 = [];
 
-    $.get(`${path}/logic_trend/api.php`, function(response) {
+    $.get(`${path}/logic_trend/api.php?limit=${SOURCE_LIMIT}`, function(response) {
         for(let data of response) {
             labels.push(data.datetime);
             dataset1.push(+data.dataset_1);
@@ -122,11 +123,13 @@ function getDataSource() {
                     }
                 },
                 scales: {
-                    xAxes: [{
-                        ticks: {
-                          maxTicksLimit: 10
-                        }
-                    }]
+                    x: {
+                        // max: 10,
+                    },
+                    y: {
+                        // suggestedMax: 10
+                        // max: 10,
+                    }
                 }
             },
         };
