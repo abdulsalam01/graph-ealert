@@ -102,7 +102,7 @@ async function getDataSource() {
         const _colorsYellow = colors.filter((m, index) => { return index % 2 == 1});
         //
         const _blueRed = _colorsBlue.map((m) => m ? 'blue': 'blue');
-        const _yellowRed = _colorsYellow.map((m) => m ? 'yellow': 'blue');
+        const _yellowRed = _colorsYellow.map((m) => m ? 'yellow': 'yellow');
 
         const _data = {
             labels,
