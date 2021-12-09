@@ -17,7 +17,7 @@
             unset($sheetData[0]);
 
             $response = [];
-            for($i = 1; $i < $limit; $i++) {
+            for($i = 1; $i <= $limit; $i++) {
                 $value = $sheetData[$i];
 
                 $date = $value[0];
