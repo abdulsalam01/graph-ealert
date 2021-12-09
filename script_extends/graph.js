@@ -7,7 +7,7 @@ const TIME_IN_SECONDS = 5;
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((_dataset, index) => {
-        let _random = Math.floor(Math.random() * 500);
+        let _random = Math.floor(Math.random() * 350);
 
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
