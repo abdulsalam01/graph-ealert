@@ -49,13 +49,13 @@ async function getDataSource() {
             labels,
             datasets: [
                 {
-                    label: 'Miliampere differenz',
+                    label: 'MA differenz T1',
                     data: dataset1,
                     borderColor: 'blue',
                     backgroundColor: _blueRed,
                 },
                 {
-                    label: 'Miliampere differenz T2',
+                    label: 'MA differenz T2',
                     data: dataset2,
                     borderColor: 'yellow',
                     backgroundColor: _yellowRed,
