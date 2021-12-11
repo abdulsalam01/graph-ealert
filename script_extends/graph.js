@@ -139,7 +139,7 @@ setInterval(async() => {
 }, TIME_IN_SECONDS * 1000);
 
 // filter-logical
-const _dateFilter = $('#dateRange').daterangepicker({}, function(start, end, label) {
+$('#dateRange').daterangepicker({}, function(start, end, label) {
     const _start = start.format('DD/MM/YYYY');
     const _end = end.format('DD/MM/YYYY');
 

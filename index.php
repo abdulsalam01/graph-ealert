@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chart</title>
 
-    <link rel="stylesheet" href="script_extends/style.css"/>
     <!-- datepicker -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- own-css -->
+    <link rel="stylesheet" href="script_extends/style.css"/>
 </head>
 <body>
     <!-- loader -->
@@ -18,7 +19,7 @@
 
     <!-- graph -->
     <div id="content" class="d-none">
-        <div class="form">
+        <div class="container form">
             <input type="text" id="dateRange"/>
         </div>
 
