@@ -22,6 +22,10 @@
     animation: spin 2s linear infinite;
 }
 
+.d-none {
+    display: none;
+}
+
 /* Safari */
 @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }

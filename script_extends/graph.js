@@ -1,9 +1,21 @@
 let chartAm;
+let _dataGlobal = {};
+
 // constanta value to determine limit of data from source, max wrong number
 const SOURCE_LIMIT = 30;
 const MAX_LIMIT = 300;
 const TIME_IN_SECONDS = 5;
 
+// components
+const _content = $('#content');
+const _loader = $("#loader");
+
+/**
+ * 
+ * @param {chart data} chart 
+ * @param {array} label 
+ * @param {array} data 
+ */
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((_dataset, index) => {
@@ -24,6 +36,9 @@ function addData(chart, label, data) {
     chart.update();
 }
 
+/**
+ * return data_source from excel
+ */
 async function getDataSource() {
     const path = window.location.href.split('/').splice(0, 4).join('/');
     const labels = [];
@@ -90,13 +105,15 @@ async function getDataSource() {
         };
 
         chartAm = setData($('#chartAm'), _config);
+        _dataGlobal = _data
     });
 }
 
 function setData(chart, data) {
     const _chart = new Chart(chart, data);
-    // hide loader
-    $("#loader").hide();
+
+    _content.show();
+    _loader.hide();
     return _chart;
 }
 
@@ -104,12 +121,13 @@ function setData(chart, data) {
 // 1st loaded data
 let statusLoaded = false;
 setInterval(async() => {
-    if (statusLoaded) {
+
+    if (statusLoaded && chartAm) {
         const _date = new Date();
         const _random = Math.floor(Math.random() * 300);
-        const _dateNow = `${_date.getDate()}/${_date.getMonth()}/${_date.getFullYear()}`;
+        const _dateNow = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`;
         const _timeNow = `${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`;
-        const _labels = _dateNow + _timeNow;
+        const _labels = _dateNow + " " + _timeNow;
 
         addData(chartAm, _labels, _random);
     }
@@ -119,3 +137,36 @@ setInterval(async() => {
         statusLoaded = true
     }
 }, TIME_IN_SECONDS * 1000);
+
+// filter-logical
+const _dateFilter = $('#dateRange').daterangepicker({}, function(start, end, label) {
+    const _start = start.format('DD/MM/YYYY');
+    const _end = end.format('DD/MM/YYYY');
+
+    // check if the data already initialize
+    if (_dataGlobal) {
+        const _label = [..._dataGlobal.labels];
+        const _datapoints1 = [..._dataGlobal.datasets[0].data];
+        const _datapoints2 = [..._dataGlobal.datasets[1].data];
+
+        const _indexStartDate = _label.map((m) => m.split(" ")[0]).findIndex((val) => {
+            const inMoment = moment(val);
+            return inMoment.isSameOrAfter(_start);
+        });
+        const _indexEndDate = _label.map((m) => m.split(" ")[0]).findIndex((val) => {
+            const inMoment = moment(val);
+            return !inMoment.isSameOrBefore(_end) && moment(_end).isSameOrAfter(_start);
+        });
+
+        const _filterLabel = _label.slice(_indexStartDate, _indexEndDate + 1);
+        const _filterData1 = _datapoints1.slice(_indexStartDate, _indexEndDate + 1);
+        const _filterData2 = _datapoints2.slice(_indexStartDate, _indexEndDate + 1);
+
+        // call chart
+        chartAm.config.data.labels = _filterLabel;
+        chartAm.config.data.datasets[0].data = _filterData1;
+        chartAm.config.data.datasets[1].data = _filterData2;
+        // update the chart
+        chartAm.update();
+    }
+});

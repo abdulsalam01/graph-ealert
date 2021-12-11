@@ -7,6 +7,8 @@
     <title>Chart</title>
 
     <link rel="stylesheet" href="script_extends/style.css"/>
+    <!-- datepicker -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
     <!-- loader -->
@@ -15,12 +17,19 @@
     </div>
 
     <!-- graph -->
-    <div>
+    <div id="content" class="d-none">
+        <div class="form">
+            <input type="text" id="dateRange"/>
+        </div>
+
         <canvas id="chartAm"></canvas>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- date-picker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="script_extends/graph.js"></script>
 </body>
 </html>
