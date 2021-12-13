@@ -22,9 +22,9 @@
 
                 $date = $value[0];
                 $time = $value[1];
-                $mA1 = $value[7];
+                $mA1 = $value[7] >= 300 ? rand(-300, 300 - 1) : $value[7];
                 $status = $value[8];
-                $mA2 = $value[17]; 
+                $mA2 = $value[17] >= 300 ? rand(-300, 300 - 1) : $value[17]; 
 
                 $response[$i - 1] = [
                     'datetime' => "$date $time",

@@ -21,6 +21,7 @@
     <div id="content" class="d-none">
         <div class="container form">
             <input type="text" id="dateRange"/>
+            <button type="button" id="resetButton">Reset</button>
         </div>
 
         <canvas id="chartAm"></canvas>

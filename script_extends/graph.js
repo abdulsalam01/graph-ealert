@@ -1,5 +1,7 @@
 let chartAm;
-let _dataGlobal = {};
+let dataGlobal = {};
+// 1st loaded data
+let statusLoaded = false;
 
 // constanta value to determine limit of data from source, max wrong number
 const SOURCE_LIMIT = 30;
@@ -9,6 +11,7 @@ const TIME_IN_SECONDS = 5;
 // components
 const _content = $('#content');
 const _loader = $("#loader");
+const _reset = $("#resetButton");
 
 /**
  * 
@@ -105,7 +108,7 @@ async function getDataSource() {
         };
 
         chartAm = setData($('#chartAm'), _config);
-        _dataGlobal = _data
+        dataGlobal = _data
     });
 }
 
@@ -117,9 +120,22 @@ function setData(chart, data) {
     return _chart;
 }
 
+/**
+ * Clear chart data and get back from data_source
+ */
+async function resetData() {
+    // set attribute for loader and content
+    _content.hide();
+    _loader.show();
 
-// 1st loaded data
-let statusLoaded = false;
+    // empty data
+    dataGlobal = {}
+    statusLoaded = false
+        
+    chartAm.destroy();
+    await getDataSource();
+}
+
 setInterval(async() => {
 
     if (statusLoaded && chartAm) {
@@ -144,10 +160,10 @@ $('#dateRange').daterangepicker({}, function(start, end, label) {
     const _end = end.format('DD/MM/YYYY');
 
     // check if the data already initialize
-    if (_dataGlobal) {
-        const _label = [..._dataGlobal.labels];
-        const _datapoints1 = [..._dataGlobal.datasets[0].data];
-        const _datapoints2 = [..._dataGlobal.datasets[1].data];
+    if (dataGlobal) {
+        const _label = [...dataGlobal.labels];
+        const _datapoints1 = [...dataGlobal.datasets[0].data];
+        const _datapoints2 = [...dataGlobal.datasets[1].data];
 
         const _indexStartDate = _label.map((m) => m.split(" ")[0]).findIndex((val) => {
             const inMoment = moment(val);
@@ -158,9 +174,12 @@ $('#dateRange').daterangepicker({}, function(start, end, label) {
             return !inMoment.isSameOrBefore(_end) && moment(_end).isSameOrAfter(_start);
         });
 
-        const _filterLabel = _label.slice(_indexStartDate, _indexEndDate + 1);
-        const _filterData1 = _datapoints1.slice(_indexStartDate, _indexEndDate + 1);
-        const _filterData2 = _datapoints2.slice(_indexStartDate, _indexEndDate + 1);
+        // const _filterLabel = _label.slice(_indexStartDate, _indexEndDate + 1);
+        // const _filterData1 = _datapoints1.slice(_indexStartDate, _indexEndDate + 1);
+        // const _filterData2 = _datapoints2.slice(_indexStartDate, _indexEndDate + 1);
+        const _filterLabel = _label.slice(_indexStartDate);
+        const _filterData1 = _datapoints1.slice(_indexStartDate);
+        const _filterData2 = _datapoints2.slice(_indexStartDate);
 
         // call chart
         chartAm.config.data.labels = _filterLabel;
@@ -170,3 +189,6 @@ $('#dateRange').daterangepicker({}, function(start, end, label) {
         chartAm.update();
     }
 });
+
+// reset-call in action
+_reset.click(function() { resetData() });
