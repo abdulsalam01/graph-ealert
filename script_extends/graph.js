@@ -22,7 +22,7 @@ const _reset = $("#resetButton");
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach(async(_dataset, index) => {
-        let _random = Math.floor(Math.random() * 350);
+        let _random = Math.floor(Math.random() * 320);
 
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
