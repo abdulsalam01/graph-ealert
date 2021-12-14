@@ -21,15 +21,17 @@ const _reset = $("#resetButton");
  */
 function addData(chart, label, data) {
     chart.data.labels.push(label);
-    chart.data.datasets.forEach((_dataset, index) => {
+    chart.data.datasets.forEach(async(_dataset, index) => {
         let _random = Math.floor(Math.random() * 350);
 
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
 
         if (_random > MAX_LIMIT) {
-            // send email here
+            // set to red
             chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'red';
+            // send email here
+            await sendMail({time: label, point: data});
         } else {
             chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
             chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
@@ -136,6 +138,18 @@ async function resetData() {
     await getDataSource();
 }
 
+/**
+ * 
+ * @param {Object} data 
+ */
+async function sendMail(data) {
+    const path = window.location.href.split('/').splice(0, 4).join('/');
+
+    await $.post(`${path}/logic_trend/mail.php`, {data: JSON.stringify(data)}, function(response) {
+        console.log(response);
+    });
+}
+
 setInterval(async() => {
 
     if (statusLoaded && chartAm) {
@@ -174,9 +188,6 @@ $('#dateRange').daterangepicker({}, function(start, end, label) {
             return !inMoment.isSameOrBefore(_end) && moment(_end).isSameOrAfter(_start);
         });
 
-        // const _filterLabel = _label.slice(_indexStartDate, _indexEndDate + 1);
-        // const _filterData1 = _datapoints1.slice(_indexStartDate, _indexEndDate + 1);
-        // const _filterData2 = _datapoints2.slice(_indexStartDate, _indexEndDate + 1);
         const _filterLabel = _label.slice(_indexStartDate);
         const _filterData1 = _datapoints1.slice(_indexStartDate);
         const _filterData2 = _datapoints2.slice(_indexStartDate);
