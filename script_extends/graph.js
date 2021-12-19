@@ -135,7 +135,7 @@ async function resetData() {
     statusLoaded = false
         
     chartAm.destroy();
-    await getDataSource();
+    chartAm = null
 }
 
 /**
@@ -151,7 +151,7 @@ async function sendMail(data) {
 }
 
 setInterval(async() => {
-
+    console.log('is loaded')
     if (statusLoaded && chartAm) {
         const _date = new Date();
         const _random = Math.floor(Math.random() * 300);
