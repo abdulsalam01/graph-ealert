@@ -22,7 +22,7 @@ const _reset = $("#resetButton");
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach(async(_dataset, index) => {
-        let _random = Math.floor(Math.random() * 320);
+        let _random = Math.floor(Math.random() * 350);
 
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
@@ -30,11 +30,13 @@ function addData(chart, label, data) {
         if (_random > MAX_LIMIT) {
             // set to red
             chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'red';
+            return
             // send email here
-            await sendMail({time: label, point: data});
+            // await sendMail({time: label, point: data});
         } else {
-            chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
-            chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
+            // chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
+            // chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
+            // chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'yellow';
         }
     });
 
