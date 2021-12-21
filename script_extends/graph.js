@@ -88,23 +88,27 @@ async function getDataSource() {
             data: _data,
             options: {
                 responsive: true,
-                labels: {
-                    color: 'white',
-                },
                 plugins: {
                     legend: {
-                        position: 'top',
+                        position: 'top'
                     },
                     title: {
+                        color: 'white',
                         display: true,
                         text: 'Stormdifferenzmessung Tumbler'
                     }
                 },
                 scales: {
                     x: {
+                        ticks: {
+                            color: 'white',
+                        }
                         // max: 10,
                     },
                     y: {
+                        ticks: {
+                            color: 'white',
+                        }
                         // suggestedMax: 10
                         // max: 10,
                     }

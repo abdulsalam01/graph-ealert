@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="script_extends/style.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
-<body class="body bg-light">
+<body class="body bg-dark">
     <!-- loader -->
     <div class="wrapper" id="loader">
         <div class="loader"></div>
@@ -20,7 +20,7 @@
 
     <!-- graph -->
     <div id="content">
-        <div class="container chart-border mt-3 mb-5 shadow-sm bg-body rounded">
+        <div class="container mt-3 mb-8 shadow-sm bg-body rounded">
             <input type="text" class="input mt-3" id="dateRange"/>
             <button type="button" class="btn btn-sm btn-outline-danger" id="resetButton">Reset</button>
             
