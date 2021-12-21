@@ -32,10 +32,10 @@ function addData(chart, label, data) {
             chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'red';
             return
             // send email here
-            // await sendMail({time: label, point: data});
+            await sendMail({time: label, point: data});
         } else {
-            // chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
-            // chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
+             chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
+             chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
             // chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'yellow';
         }
     });
