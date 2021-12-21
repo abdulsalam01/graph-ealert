@@ -73,13 +73,11 @@ async function getDataSource() {
                 {
                     label: 'MA differenz T1',
                     data: dataset1,
-                    borderColor: 'blue',
                     backgroundColor: _blueRed,
                 },
                 {
                     label: 'MA differenz T2',
                     data: dataset2,
-                    borderColor: 'yellow',
                     backgroundColor: _yellowRed,
                 }
             ]
@@ -90,6 +88,9 @@ async function getDataSource() {
             data: _data,
             options: {
                 responsive: true,
+                labels: {
+                    color: 'white',
+                },
                 plugins: {
                     legend: {
                         position: 'top',

@@ -10,6 +10,10 @@
     padding-bottom: 5px;
 }
 
+.chart-border {
+    border-color: #e65c00;
+}
+
 .wrapper {
     width: 100%;
     position: relative;
