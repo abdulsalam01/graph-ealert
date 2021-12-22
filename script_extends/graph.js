@@ -27,18 +27,20 @@ function addData(chart, label, data) {
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
 
-        if (_random > MAX_LIMIT) {
+        if (_random > MAX_LIMIT && index == 0) {
             // set to red
-            chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'red';
+            chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'red';
             // send email here
             await sendMail({time: label, point: data});
-            return
+        } else if(_random > MAX_LIMIT && index == 1) {
+            // set to red
+            chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'red';
+            // send email here
+            await sendMail({time: label, point: data});
         } else {
-             chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
-             chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
-            // chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'yellow';
+            chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
+            chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
         }
-        return
     });
 
     chart.update();
@@ -155,9 +157,9 @@ async function resetData() {
 async function sendMail(data) {
     const path = window.location.href.split('/').splice(0, 4).join('/');
 
-    await $.post(`${path}/logic_trend/mail.php`, {data: JSON.stringify(data)}, function(response) {
-        console.log(response);
-    });
+    // await $.post(`${path}/logic_trend/mail.php`, {data: JSON.stringify(data)}, function(response) {
+    //     console.log(response);
+    // });
 }
 
 setInterval(async() => {
