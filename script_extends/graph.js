@@ -22,7 +22,7 @@ const _reset = $("#resetButton");
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach(async(_dataset, index) => {
-        let _random = Math.floor(Math.random() * 350);
+        let _random = Math.floor(Math.random() * 310);
 
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
@@ -38,6 +38,7 @@ function addData(chart, label, data) {
              chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
             // chart.data.datasets[index].backgroundColor[_dataset.data.length - 1] = 'yellow';
         }
+        return
     });
 
     chart.update();

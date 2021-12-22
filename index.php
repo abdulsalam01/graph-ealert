@@ -20,7 +20,7 @@
 
     <!-- graph -->
     <div id="content">
-        <div class="container mt-3 mb-8 shadow-sm bg-body rounded">
+        <div class="container mt-3 mb-8 shadow p-3 bg-body rounded">
             <input type="text" class="input mt-3" id="dateRange"/>
             <button type="button" class="btn btn-sm btn-outline-danger" id="resetButton">Reset</button>
             
