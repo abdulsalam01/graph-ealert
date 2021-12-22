@@ -33,10 +33,11 @@
             try {
                 //Recipients
                 $mail->setFrom('thinkwellit9@gmail.com', 'Administrator');
-                $mail->addAddress('jsuf046@gmail.com', 'Muhamad Yusup');
+                $mail->addAddress('frostareport@gmail.com', 'Frosta User');
 
                 //Content
                 $mail->isHTML(true);
+                $mail->addStringAttachment(file_get_contents('../assets/high-alert.png'), 'Alert.png');
                 $mail->Subject = "Alert of Chart > 300";
                 $mail->Body    = "<b>The data is higher than 300 at $data->time</b>";
 

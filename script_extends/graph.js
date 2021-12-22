@@ -22,7 +22,7 @@ const _reset = $("#resetButton");
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach(async(_dataset, index) => {
-        let _random = Math.floor(Math.random() * 310);
+        let _random = Math.floor(Math.random() * 410);
 
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
@@ -161,7 +161,6 @@ async function sendMail(data) {
 }
 
 setInterval(async() => {
-    console.log('is loaded')
     if (statusLoaded && chartAm) {
         const _date = new Date();
         const _random = Math.floor(Math.random() * 300);
