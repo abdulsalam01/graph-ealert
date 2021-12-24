@@ -12,7 +12,21 @@
     <link rel="stylesheet" href="script_extends/style.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
-<body class="body bg-dark">
+<body class="body bg-dark">    
+    <!-- header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-5">
+            <img src="assets/brand.jpeg" width="75" height="75" class="d-inline-block align-top" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">        
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Make Frosta as Digital Leader</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- loader -->
     <div class="wrapper" id="loader">
         <div class="loader"></div>
@@ -20,7 +34,7 @@
 
     <!-- graph -->
     <div id="content">
-        <div class="container mt-3 mb-8 shadow p-3 bg-body rounded">
+        <div class="container mt-3 mb-8 shadow-lg p-3 rounded">
             <input type="text" class="input mt-3" id="dateRange"/>
             <button type="button" class="btn btn-sm btn-outline-danger" id="resetButton">Reset</button>
             
