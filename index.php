@@ -23,6 +23,15 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Make Frosta as Digital Leader</a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <select id="optionBar">
+                            <option>Bar</option>
+                            <option>Line</option>
+                        </select>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

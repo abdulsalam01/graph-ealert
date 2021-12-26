@@ -106,7 +106,7 @@ async function getDataSource() {
                     title: {
                         color: 'white',
                         display: true,
-                        text: 'Stormdifferenzmessung Tumbler'
+                        text: 'Stormdiffrenzmessung Linie P14'
                     }
                 },
                 scales: {
