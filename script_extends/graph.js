@@ -12,6 +12,7 @@ const TIME_IN_SECONDS = 5;
 const _content = $('#content');
 const _loader = $("#loader");
 const _reset = $("#resetButton");
+const _optionBar = $("#optionBar");
 
 /**
  * 
@@ -44,7 +45,7 @@ function addData(chart, label, data) {
         }
         
         // otherwise
-        chart.data.datasets[0].backgroundColor[_dataset.data.length - 0] = 'blue';
+        chart.data.datasets[0].backgroundColor[_dataset.data.length] = 'blue';
         chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
     });
 
@@ -219,3 +220,8 @@ $('#dateRange').daterangepicker({}, function(start, end, label) {
 
 // reset-call in action
 _reset.click(function() { resetData() });
+// change bar-type
+_optionBar.on('change', function() {
+    chartAm.config.type = this.value;
+    chartAm.update();
+});
