@@ -34,7 +34,7 @@
                 //Recipients
                 $mail->setFrom('thinkwellit9@gmail.com', 'Administrator');
                 $mail->addAddress('frostareport@gmail.com', 'Frosta User');
-
+                
                 //Content
                 $mail->isHTML(true);
                 $mail->addStringAttachment(file_get_contents('../assets/high-alert.png'), 'Alert.png');

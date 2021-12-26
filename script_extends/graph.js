@@ -22,13 +22,12 @@ const _reset = $("#resetButton");
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach(async(_dataset, index) => {
-        let _random = Math.floor(Math.random() * 310);
-
+        let _random = Math.floor(Math.random() * 400);
         _random *= Math.round(Math.random()) ? 1 : -1;
         _dataset.data.push(_random);
 
         // check by index
-        if (_random > MAX_LIMIT && index == 0) {
+        if(_random > MAX_LIMIT && index == 0) {
             // set to red
             chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'red';
             // send email here
@@ -45,7 +44,7 @@ function addData(chart, label, data) {
         }
         
         // otherwise
-        chart.data.datasets[0].backgroundColor[_dataset.data.length - 1] = 'blue';
+        chart.data.datasets[0].backgroundColor[_dataset.data.length - 0] = 'blue';
         chart.data.datasets[1].backgroundColor[_dataset.data.length - 1] = 'yellow';
     });
 
@@ -70,8 +69,8 @@ async function getDataSource() {
             dataset2.push(+data.dataset_2);
         }
 
-        const _colorsBlue = colors.filter((m, index) => { return index % 2 == 0});
-        const _colorsYellow = colors.filter((m, index) => { return index % 2 == 1});
+        const _colorsBlue = colors.filter((m, index) => { return index % 1 == 0});
+        const _colorsYellow = colors.filter((m, index) => { return index % 1 == 0});
         //
         const _blueRed = _colorsBlue.map((m) => m ? 'blue': 'blue');
         const _yellowRed = _colorsYellow.map((m) => m ? 'yellow': 'yellow');
@@ -171,7 +170,7 @@ async function sendMail(data) {
 setInterval(async() => {
     if (statusLoaded && chartAm) {
         const _date = new Date();
-        const _random = Math.floor(Math.random() * 300);
+        const _random = Math.floor(Math.random() * 400);
         const _dateNow = `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`;
         const _timeNow = `${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`;
         const _labels = _dateNow + " " + _timeNow;
