@@ -14,14 +14,14 @@
 </head>
 <body class="body bg-dark">    
     <!-- header -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand ml-5">
-            <img src="assets/brand.jpeg" width="75" height="75" class="d-inline-block align-top" alt="">
+    <nav class="navbar navbar-expand nav-bg">
+        <a class="navbar-brand ml-3">
+            <img src="assets/brand.jpeg" class="logo d-inline-block align-top" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">        
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Make Frosta as Digital Leader</a>
+                    <span><h4>Make Frosta as Digital Leader</h4></span>
                 </li>
 
                 <li class="nav-item">

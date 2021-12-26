@@ -2,9 +2,22 @@
     overflow: hidden;
 }
 
+.logo {
+    width: 80px;
+    height: 80px;
+    border: 0;
+    margin: 10px;
+    border-radius: 40px;
+}
+
+.nav-bg {
+    background-color: rgba(220, 226, 218, 0.842);
+}
+
 .input {
     width: 180px;
     font-size: 11px;
+    border: 0;
     padding: 2em;
     padding-top: 5px;
     padding-bottom: 5px;
