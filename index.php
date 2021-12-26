@@ -47,6 +47,12 @@
             <input type="text" class="input mt-3" id="dateRange"/>
             <button type="button" class="btn btn-sm btn-outline-danger" id="resetButton">Reset</button>
             
+            <!-- acronim-legend-data -->
+            <div class="">
+                <span>MA1 mean: MiliAmpere 1</span>
+                <span>MA2 mean: MiliAmpere 2</span>
+            </div>
+
             <canvas id="chartAm"></canvas>
         </div>
     </div>
