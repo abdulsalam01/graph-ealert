@@ -14,24 +14,23 @@
 </head>
 <body class="bg-dark">    
     <!-- header -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand ml-5">
-            <img src="assets/brand.jpeg" width="75" height="75" class="d-inline-block align-top" alt="">
+    <nav class="navbar navbar-expand-lg navbar-light nav-bg">
+        <a class="navbar-brand">
+            <img src="assets/brand.jpeg" class="logo d-inline-block align-top" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">        
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Make Frosta as Digital Leader</a>
+                    <span><h4>Make Frosta as Digital Leader</h4></span>
                 </li>
-
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <select id="optionBar">
-                            <option value="bar">Bar</option>
-                            <option value="line">Line</option>
-                        </select>
-                    </a>
-                </li>
+            </ul>
+            <ul class="navbar-nav mr-right">
+                <div class="select">
+                    <select id="optionBar">        
+                        <option value="bar">Bar</option>
+                        <option value="line">Line</option>
+                    </select>
+                </div>
             </ul>
         </div>
     </nav>
@@ -42,20 +41,22 @@
     </div>
 
     <!-- graph -->
-    <div id="content">
-        <div class="container mt-3 mb-8 shadow-lg p-3 rounded">
+    <div class="container" id="content">
+        <div class="container">
             <input type="text" class="input mt-3" id="dateRange"/>
             <button type="button" class="btn btn-sm btn-outline-danger" id="resetButton">Reset</button>
-            
-            <!-- acronim-legend-data -->
-            <div class="">
-                <span>MA1 mean: MiliAmpere 1</span>
-                <span>MA2 mean: MiliAmpere 2</span>
+        </div>
+
+            <div class="container chart mt-3 shadow-lg p-4 rounded">     
+                <!-- acronim-legend-data -->
+                <canvas id="chartAm-1"></canvas>
             </div>
 
-            <canvas id="chartAm-1"></canvas>
-            <canvas id="chartAm-2"></canvas>
-        </div>
+            <div class="container chart mt-3 shadow-lg p-4 rounded">            
+                <!-- acronim-legend-data -->
+                <canvas id="chartAm-2"></canvas>
+            </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -67,5 +68,6 @@
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+
 </body>
 </html>

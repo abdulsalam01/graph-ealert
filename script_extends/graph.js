@@ -60,6 +60,12 @@ async function getDataSource() {
             dataset2.push(+data.dataset_2);
         }
 
+        const _colorsBlue = colors.filter((m, index) => { return index % 1 == 0});
+        const _colorsYellow = colors.filter((m, index) => { return index % 1 == 0});
+        //
+        const _blueRed = _colorsBlue.map((m) => m ? 'blue': 'blue');
+        const _yellowRed = _colorsYellow.map((m) => m ? 'yellow': 'yellow');
+
         const _data_1 = {
             labels,
             datasets: [
@@ -67,7 +73,7 @@ async function getDataSource() {
                     label: 'MA differenz T1',
                     data: dataset1,
                     borderColor: 'blue',
-                    backgroundColor: ['blue'],
+                    backgroundColor: _blueRed,
                 }
             ]
         }
@@ -112,7 +118,7 @@ async function getDataSource() {
             label: 'MA differenz T2',
             data: dataset2,
             borderColor: 'yellow',
-            backgroundColor: ['yellow'],
+            backgroundColor: _yellowRed,
         }
         _config_2.data = _data_2;
 

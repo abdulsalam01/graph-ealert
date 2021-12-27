@@ -1,17 +1,17 @@
-.body {
-    overflow: hidden;
-}
-
 .logo {
     width: 80px;
     height: 80px;
     border: 0;
-    margin: 10px;
+    margin: 0;
     border-radius: 40px;
 }
 
 .nav-bg {
     background-color: rgba(220, 226, 218, 0.842);
+}
+
+.nav-item {
+    margin: 10px;
 }
 
 .input {
@@ -46,6 +46,10 @@
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
+}
+
+.chart {
+    margin-bottom: 10px;
 }
 
 #dateRange {

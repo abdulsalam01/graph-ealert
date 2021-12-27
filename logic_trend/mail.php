@@ -33,7 +33,7 @@
             try {
                 //Recipients
                 $mail->setFrom('thinkwellit9@gmail.com', 'Administrator');
-                $mail->addAddress('frostareport@gmail.com', 'Frosta User');
+                //$mail->addAddress('frostareport@gmail.com', 'Frosta User');
                 
                 //Content
                 $mail->isHTML(true);
