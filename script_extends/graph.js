@@ -144,7 +144,7 @@ async function resetData() {
 
     // empty data
     dataGlobal = {chart1: {}, chart2: {}};
-    statusLoaded = false
+    statusLoaded = false;
     
     chartAm1.destroy();
     chartAm2.destroy();
