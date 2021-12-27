@@ -26,7 +26,7 @@
             </ul>
             <ul class="navbar-nav mr-right">
                 <div class="select">
-                    <select id="optionBar">        
+                    <select class="form-select form-select-lg"id="optionBar">        
                         <option value="bar">Bar</option>
                         <option value="line">Line</option>
                     </select>
