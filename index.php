@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="script_extends/style.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
-<body class="body bg-dark">    
+<body class="bg-dark">    
     <!-- header -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand ml-5">
@@ -53,7 +53,8 @@
                 <span>MA2 mean: MiliAmpere 2</span>
             </div>
 
-            <canvas id="chartAm"></canvas>
+            <canvas id="chartAm-1"></canvas>
+            <canvas id="chartAm-2"></canvas>
         </div>
     </div>
 

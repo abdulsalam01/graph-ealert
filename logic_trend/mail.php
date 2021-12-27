@@ -39,7 +39,7 @@
                 $mail->isHTML(true);
                 $mail->addStringAttachment(file_get_contents('../assets/high-alert.png'), 'Alert.png');
                 $mail->Subject = "Alert of Chart > 300";
-                $mail->Body    = "<b>The data is higher than 300 at $data->time</b>";
+                $mail->Body    = "<b>The data is higher than 300 at $data->time</b> in Tumbler $data->tumbler";
 
                 $mail->send();
                 echo json_encode("Ok!");
