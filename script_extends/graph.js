@@ -98,7 +98,6 @@ async function getDataSource() {
                         ticks: {
                             color: 'white',
                         }
-                        // max: 10,
                     },
                     y: {
                         ticks: {
@@ -176,7 +175,7 @@ async function sendMail(data) {
  * @param {Chart Object} chart 
  * @param {Object} data 
  */
-function filter(chart, data, params = {}) {
+function filter(chart, data, params = {}, colorDef = 'blue') {
     const _label = [...data.labels];
     const _datapoints1 = [...data.datasets[0].data];
 
@@ -190,12 +189,24 @@ function filter(chart, data, params = {}) {
     });
 
     const _filterLabel = _label.slice(_indexStartDate);
-    const _filterData1 = _datapoints1.slice(_indexStartDate);
+    const _filterData = _datapoints1.slice(_indexStartDate);
 
     // call chart
     chart.config.data.labels = _filterLabel;
-    chart.config.data.datasets[0].data = _filterData1;
-    // update the chart
+    chart.config.data.datasets[0].data = _filterData;
+    // update the chart and check the max bar
+    chart.config.data.datasets.forEach(async(_dataset) => {
+        _dataset.data.map((_value, _index) => {
+            if(_value > MAX_LIMIT) {
+                // set to red
+                chart.data.datasets[0].backgroundColor[_index] = 'red';
+                return;
+            }       
+            // otherwise
+            chart.data.datasets[0].backgroundColor[_index] = colorDef;
+        });
+    });
+
     chart.update();
 }
 
@@ -234,12 +245,12 @@ $('#dateRange').daterangepicker({}, function(start, end, label) {
 
     // check if the data-1 already initialize
     if (dataGlobal.chart1) {
-        filter(chartAm1, dataGlobal.chart1, {_start, _end});
+        filter(chartAm1, dataGlobal.chart1, {_start, _end}, 'blue');
     }
 
-    // check if the data-2 already initializ    
+    // check if the data-2 already initialize
     if (dataGlobal.chart2) {
-        filter(chartAm2, dataGlobal.chart2, {_start, _end});
+        filter(chartAm2, dataGlobal.chart2, {_start, _end}, 'yellow');
     }
 });
 

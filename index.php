@@ -42,23 +42,23 @@
 
     <!-- graph -->
     <div class="container" id="content">
-        <div class="container">
+        <div class="">
             <input type="text" class="input mt-3" id="dateRange"/>
             <button type="button" class="btn btn-sm btn-outline-danger" id="resetButton">Reset</button>
         </div>
 
-            <div class="container chart mt-3 shadow-lg p-4 rounded">     
-                <!-- acronim-legend-data -->
-                <canvas id="chartAm-1"></canvas>
-            </div>
+        <div class="container chart mt-3 shadow-lg p-4 rounded">     
+            <!-- acronim-legend-data -->
+            <canvas id="chartAm-1"></canvas>
+        </div>
 
-            <div class="container chart mt-3 shadow-lg p-4 rounded">            
-                <!-- acronim-legend-data -->
-                <canvas id="chartAm-2"></canvas>
-            </div>
-
+        <div class="container chart mt-3 shadow-lg p-4 rounded">            
+            <!-- acronim-legend-data -->
+            <canvas id="chartAm-2"></canvas>
+        </div>
     </div>
 
+    <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- date-picker -->
